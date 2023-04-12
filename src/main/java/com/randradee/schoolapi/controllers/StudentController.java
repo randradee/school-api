@@ -8,13 +8,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/student")
@@ -29,5 +28,15 @@ public class StudentController {
         BeanUtils.copyProperties(studentDTO, studentModel);
         studentModel.setDateOfBirth(LocalDate.now(ZoneId.of("UTC")));
         return ResponseEntity.status(HttpStatus.CREATED).body(studentService.save(studentModel));
+    }
+
+    @GetMapping
+    ResponseEntity<List<StudentModel>> getStudents(){
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    ResponseEntity<Object> getStudentById(@PathVariable (value = "id") UUID id){
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.findById(id));
     }
 }
