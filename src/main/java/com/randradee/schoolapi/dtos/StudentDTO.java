@@ -7,8 +7,8 @@ import java.time.LocalDate;
 public class StudentDTO {
     @NotBlank
     private String name;
-    @NotBlank
-    private LocalDate dateOfBirth;
+//    @NotBlank
+//    private LocalDate dateOfBirth;
     @NotBlank
     private String city;
     @NotBlank
