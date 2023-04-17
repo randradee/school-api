@@ -1,9 +1,11 @@
 package com.randradee.schoolapi.services;
 
+import com.randradee.schoolapi.dtos.StudentDTO;
 import com.randradee.schoolapi.models.StudentModel;
 import com.randradee.schoolapi.repositories.StudentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -26,5 +28,14 @@ public class StudentService {
 
     public Optional<StudentModel> findById(UUID id) {
         return studentRepository.findById(id);
+    }
+
+    @Transactional
+    public void delete(StudentModel studentModel) {
+        studentRepository.delete(studentModel);
+    }
+
+    public StudentModel updateById(StudentModel studentModel) {
+        return studentRepository.save(studentModel);
     }
 }

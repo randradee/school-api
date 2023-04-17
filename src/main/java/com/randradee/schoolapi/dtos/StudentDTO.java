@@ -1,14 +1,19 @@
 package com.randradee.schoolapi.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentDTO {
     @NotBlank
     private String name;
-//    @NotBlank
-//    private LocalDate dateOfBirth;
     @NotBlank
     private String city;
     @NotBlank
